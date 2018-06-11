@@ -43,6 +43,10 @@ func TestUserDelete(t *testing.T) {
 	(&UserService{Repository: TestUserAPI{t: t}}).Delete("46adad3f09126dca")
 }
 
+func TestUserPermanentDelete(t *testing.T) {
+	(&UserService{Repository: TestUserAPI{t: t}}).PermanentDelete("46adad3f09126dca")
+}
+
 func TestUserMessageAddress(t *testing.T) {
 	contact := User{ID: "46adad3f09126dca", UserID: "aaaa", Email: "some@email.com"}
 	address := contact.MessageAddress()
@@ -87,9 +91,16 @@ func (t TestUserAPI) save(user *User) (User, error) {
 	return User{}, nil
 }
 
-func (t TestUserAPI) delete(id string) (User, error) {
+func (t TestUserAPI) archive(id string) (User, error) {
 	if id != "46adad3f09126dca" {
 		t.t.Errorf("id was %s, expected 46adad3f09126dca", id)
 	}
 	return User{}, nil
+}
+
+func (t TestUserAPI) permanentDelete(id string) error {
+	if id != "46adad3f09126dca" {
+		t.t.Errorf("intercom_user_id was %s, expected 46adad3f09126dca", id)
+	}
+	return nil
 }

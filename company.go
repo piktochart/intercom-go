@@ -32,7 +32,7 @@ type Company struct {
 	Segments         *SegmentList           `json:"segments,omitempty"`
 	Plan             *Plan                  `json:"plan,omitempty"`
 	CustomAttributes map[string]interface{} `json:"custom_attributes,omitempty"`
-	Remove           *bool                  `json:"-"`
+	Remove           *bool                  `json:"remove,omitempty"`
 }
 
 // CompanyIdentifiers to identify a Company using the API
